@@ -14,4 +14,7 @@ class User
   property :id,     Serial
   property :login,  String
   
+  def self.nora
+    @nora ||= new(:login=>"(野良)")
+  end
 end

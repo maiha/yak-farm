@@ -5,11 +5,11 @@ module Merb
     end
 
     def boids_chars(farm)
-      js_escaped_array(farm.yaks.map(&:name))
+      js_escaped_array(farm.yaks.map{|y| y.name || "(no name)"})
     end
 
     def boids_notes(farm)
-      js_escaped_array(farm.yaks.map{|y| y.user.login})
+      js_escaped_array(farm.yaks.map{|y| (y.user || User.nora).login})
     end
   end
 end # Merb
