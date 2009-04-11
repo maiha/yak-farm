@@ -1,0 +1,40 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  <title>Yak Farm</title>
+  <%= css_include_tag :farm %>
+  <%= js_include_tag :jquery %>
+  <%= js_include_tag :farm %>
+</head>
+<body onload="boidsInit();">
+<div id="farm"></div>
+<div id="trace"></div>
+<script type="text/javascript">
+
+function boidsInit(){
+	function clickcallback(char, index) {
+	}
+	function hoveroncallback(char, index){
+		$("#b" + index).css("cursor","pointer").parent().css("text-decoration", "underline");
+	}
+	function hoveroffcallback(char, index){
+		$("#b" + index).css("cursor","pointer").parent().css("text-decoration", "none");
+	}
+	var boids = $("#farm").boids({
+            maxspeed         : 100,
+            turnspeed        : 80,
+            repulsion        : 10,
+            homing           : 3,
+            delay            : 60,
+            chars            : <%= boids_chars(@farm) %>,
+            notes            : <%= boids_notes(@farm) %>,
+            clickcallback    : clickcallback, 
+            hoveroncallback  : hoveroncallback,
+            hoveroffcallback : hoveroffcallback
+        });
+}
+
+</script>
+
+</body>
+</html>
